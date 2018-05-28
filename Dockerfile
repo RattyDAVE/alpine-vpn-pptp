@@ -43,5 +43,10 @@ chmod 755 startup.sh
 
 EXPOSE 1723/tcp
 
-CMD ["/startup.sh"]
+#CMD ["/startup.sh"]
+
+CMD set -ex && \
+    iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE && \
+    pptpd && \
+    syslogd -n -O /dev/stdout
     
