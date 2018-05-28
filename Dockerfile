@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk --update --no-cache add pptpd iptables && \
+RUN apk --update --no-cache add pptpd ppp iptables && \
     rm -rf /var/cache/apk/* && \
 \
 echo "#debug" > /etc/pptpd.conf &&\
