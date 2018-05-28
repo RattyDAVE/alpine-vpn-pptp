@@ -41,6 +41,6 @@ echo "pptpd --fg" >> startup.sh && \
 \
 chmod 755 startup.sh
 
-EXPORT 1723
+EXPOSE 1723
 CMD ["startup.sh"]
     
