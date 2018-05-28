@@ -41,6 +41,7 @@ echo "pptpd --fg" >> startup.sh && \
 \
 chmod 755 startup.sh
 
-EXPOSE 1723
+EXPOSE 1723/tcp
+
 CMD ["/startup.sh"]
     
