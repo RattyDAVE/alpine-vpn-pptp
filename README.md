@@ -19,7 +19,7 @@ username    *           password    *
 To start VPN server as a docker container run:
 
 ````
-docker run -d --restart unless-stopped --privileged --net=host -v {local_path_to_chap_secrets}:/etc/ppp/chap-secrets rattydave/alpine-vpn-pptp
+docker run -d --name VPN --restart unless-stopped --privileged --net=host -v {local_path_to_chap_secrets}:/etc/ppp/chap-secrets rattydave/alpine-vpn-pptp
 ````
 
 Edit your local _chap-secrets_ file, to add or modify VPN users whenever you need.
