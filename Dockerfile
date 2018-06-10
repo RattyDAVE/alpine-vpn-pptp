@@ -18,16 +18,17 @@ RUN apk --update --no-cache add pptpd ppp iptables && \
     echo 'nobsdcomp' >> /etc/ppp/pptpd-options && \
     echo 'novj' >> /etc/ppp/pptpd-options && \
     echo 'novjccomp' >> /etc/ppp/pptpd-options && \
-    echo 'nologfd' >> /etc/ppp/pptpd-options && \
-    echo 'ms-dns 8.8.8.8' >> /etc/ppp/pptpd-options && \
-    echo 'ms-dns 223.5.5.5' >> /etc/ppp/pptpd-options
+    echo 'nologfd' >> /etc/ppp/pptpd-options
 
 EXPOSE 1723/tcp
-
-#CMD ["/startup.sh"]
-
+ 
 CMD set -ex && \
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE && \
+    if [[ "$LOCALDNS" -eq "1" ]]; then && \
+        echo 'ms-dns 127.0.0.1' >> /etc/ppp/pptpd-options && \
+    else && \
+        echo 'ms-dns 8.8.8.8' >> /etc/ppp/pptpd-options && \
+        echo 'ms-dns 223.5.5.5' >> /etc/ppp/pptpd-options && \
+    fi && \
     pptpd && \
-    syslogd -n -O /dev/stdout
-    
+    syslogd -n -O /dev/stdout    
