@@ -23,7 +23,13 @@ To user the DNS SERVER on the local host machine set the environment variable "L
 To start VPN server as a docker container run:
 
 ````
-docker run -d --name VPN --restart unless-stopped --privileged --net=host -v {local_path_to_chap_secrets}:/etc/ppp/chap-secrets rattydave/alpine-vpn-pptp
+docker run -d \
+           --name VPN \
+           --restart unless-stopped \
+           --privileged \
+           --net=host \
+           -v {local_path_to_chap_secrets}:/etc/ppp/chap-secrets \
+           rattydave/alpine-vpn-pptp
 ````
 
 Edit your local _chap-secrets_ file, to add or modify VPN users whenever you need.
@@ -43,10 +49,22 @@ https://docs.docker.com/reference/run/#mode-host
 This will is abcminiuser/docker-dns-ad-blocker as the DNS ad blocker. Then run the VPN with the local DNS setting.
 
 ````
-docker run -d --restart unless-stopped --name DNS-AD-BLOCK -p 127.0.0.1:53:53/tcp -p 127.0.0.1:53:53/udp -e DNSCRYPT=1 -e DNS_CRYPT_SERVERS=adguard-dns oznu/dns-ad-blocker
+docker run -d \
+           --restart unless-stopped \
+           --name DNS-AD-BLOCK \
+           -p 127.0.0.1:53:53/tcp -p 127.0.0.1:53:53/udp \
+           -e DNSCRYPT=1 -e DNS_CRYPT_SERVERS=adguard-dns \
+           oznu/dns-ad-blocker
 
 echo "user * password *" > /root/chap-secrets
 
-docker run -d --restart unless-stopped --privileged --name VPN --net=host -v /root/chap-secrets:/etc/ppp/chap-secrets -e "LOCALDNS=1" rattydave/alpine-vpn-pptp
+docker run -d \
+           --restart unless-stopped \
+           --privileged \
+           --name VPN \
+           --net=host \
+           -v /root/chap-secrets:/etc/ppp/chap-secrets \
+           -e "LOCALDNS=1" \
+           rattydave/alpine-vpn-pptp
 ````
 
