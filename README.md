@@ -46,7 +46,7 @@ https://docs.docker.com/reference/run/#mode-host
 
 ##### VPN with AD BLOCKER #####
 
-This will is abcminiuser/docker-dns-ad-blocker as the DNS ad blocker. Then run the VPN with the local DNS setting.
+This will is oznu/dns-ad-blocker as the DNS ad blocker. Then run the VPN with the local DNS setting.
 
 ````
 docker run -d \
