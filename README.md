@@ -43,9 +43,9 @@ https://docs.docker.com/reference/run/#mode-host
 This will is abcminiuser/docker-dns-ad-blocker as the DNS ad blocker. Then run the VPN with the local DNS setting.
 
 ````
-docker run -d --restart unless-stopped --name DNS-AD-BLOCK -p 127.0.0.1:53:53/tcp -p 53:53/udp abcminiuser/docker-dns-ad-blocker
+docker run -d --restart unless-stopped --name DNS-AD-BLOCK -p 127.0.0.1:53:53/tcp -p 127.0.0.1:53:53/udp -e DNSCRYPT=1 -e DNS_CRYPT_SERVERS=adguard-dns oznu/dns-ad-blocker
 
-echo "user * password *" >  /root/chap-secrets
+echo "user * password *" > /root/chap-secrets
 
 docker run -d --restart unless-stopped --privileged --name VPN --net=host -v /root/chap-secrets:/etc/ppp/chap-secrets -e "LOCALDNS=1" rattydave/alpine-vpn-pptp
 ````
