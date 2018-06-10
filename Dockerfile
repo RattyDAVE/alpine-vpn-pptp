@@ -29,7 +29,7 @@ CMD set -ex && \
         echo 'nameserver 127.0.0.1' > /etc/resolv.conf ; \
     else \
         echo -e 'ms-dns 8.8.8.8\nms-dns 223.5.5.5' >> /etc/ppp/pptpd-options && \
-        echo -e 'nameserver 8.8.8.8\nameserver 223.5.5.5' > /etc/resolv.conf; >
+        echo -e 'nameserver 8.8.8.8\nameserver 223.5.5.5' > /etc/resolv.conf; \
     fi && \
     pptpd && \
     syslogd -n -O /dev/stdout    
