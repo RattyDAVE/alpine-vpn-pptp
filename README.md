@@ -68,3 +68,11 @@ docker run -d \
            rattydave/alpine-vpn-pptp
 ````
 
+## Notes for RANCHEROS
+
+If you are using rancheros you need the kernel-extras service enabled and running. This will enable the drivers that are required.
+
+````
+sudo ros service enable kernel-extras
+sudo ros service up kernel-extras
+````
