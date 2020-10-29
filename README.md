@@ -42,6 +42,18 @@ To authenticate use credentials provided in _chap-secrets_ file.
 **Note:** Before starting container in `--net=host` mode, please read how networking in `host` mode works in Docker:
 https://docs.docker.com/reference/run/#mode-host
 
+
+## Auto Update
+
+To automatically update I recomend using watchtower.
+
+```
+docker run -d \
+  --name watchtower \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  v2tec/watchtower 
+```
+
 ## Using with adblocker
 
 ##### VPN with AD BLOCKER #####
