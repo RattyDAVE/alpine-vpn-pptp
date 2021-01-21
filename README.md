@@ -40,7 +40,7 @@ You can use any VPN (PPTP) client to connect to the service.
 To authenticate use credentials provided in _chap-secrets_ file.
 
 **Note:** Before starting container in `--net=host` mode, please read how networking in `host` mode works in Docker:
-https://docs.docker.com/reference/run/#mode-host
+https://docs.docker.com/engine/reference/run/#network-host
 
 
 ## Auto Update
