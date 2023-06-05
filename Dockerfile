@@ -1,6 +1,8 @@
 
 FROM alpine:edge
 
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories 
+
 RUN apk --update --no-cache add pptpd ppp iptables && \
     rm -rf /var/cache/apk/* && \
     echo 'option /etc/ppp/pptpd-options' > /etc/pptpd.conf && \
